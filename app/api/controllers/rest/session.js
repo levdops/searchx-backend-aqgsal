@@ -30,6 +30,15 @@ exports.getUserTask = function(req, res) {
     );
 };
 
+exports.getRegisteredUserGroup = function (req, res) {
+    const userId = req.params.userId;
+    const task = req.params.task;
+    const params = req.query;
+    resolve(req, res,
+        session.getRegisteredUserGroup(userId, task, params),
+        'Could not get user task.'
+    );
+};
 
 exports.postUserTask = function(req, res) {
     const userId = req.params.userId;

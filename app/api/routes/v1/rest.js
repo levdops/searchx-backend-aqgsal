@@ -20,7 +20,9 @@ module.exports = function(router) {
     router.get('/suggestions', SuggestionsCtrl.suggestions);
 
     // User
+    
     router.get('/users/:userId/task/:task', SessionCtrl.getUserTask);
+    router.get('/users/:userId/task/:task/registereduser', SessionCtrl.getRegisteredUserGroup);
     router.get('/users/:userId/task/:task/data', SessionCtrl.getUserData);
     router.post('/users/:userId/logs', LogCtrl.insertLogs);
     router.post('/users/:userId/task/:task/topic', SessionCtrl.postUserTask);
