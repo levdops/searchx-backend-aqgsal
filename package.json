@@ -7,7 +7,13 @@
     "start": "./node_modules/.bin/nf start",
     "start-dev": "node_modules/.bin/nodemon --exec 'npm start -s'",
     "test": "./node_modules/.bin/mocha --timeout 15000 --exit",
-    "coverage": "./node_modules/.bin/nyc cover _mocha -- -R spec"
+    "coverage": "./node_modules/.bin/nyc cover _mocha -- -R spec",
+    "docker:build": "npm run docker:build-server && npm run docker:build-worker",
+    "docker:build-server": "docker build -t searchx-backend-server . -f server.Dockerfile",
+    "docker:build-worker": "docker build -t searchx-backend-worker . -f worker.Dockerfile",
+    "docker:run": "npm run docker:run-server && npm run docker:run-worker",
+    "docker:run-server": "docker run -d --env-file .env --network=\"host\" searchx-backend-server",
+    "docker:run-worker": "docker run -d --env-file .env --network=\"host\" searchx-backend-worker"
   },
   "dependencies": {
     "bluebird": "^3.7.2",
