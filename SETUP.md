@@ -125,3 +125,15 @@ REACT_APP_RENDERER_URL=http://localhost:3000/render
 |References|https://github.com/searchx-framework/searchx-frontend<br><br>https://github.com/zpeide/searchx-backend-aqgsal https://www.elastic.co/guide/en/elasticsearch/reference/7.17/starting-elasticsearch.html<br><br>https://www.mongodb.com/docs/v6.0/tutorial/install-mongodb-on-ubuntu/|
 
 **
+
+## Publishing Docker Images 
+
+1. Create a Classic Personal Access Token in GitHub with read / write / delete packages permissions
+2. In the terminal: docker login --username <your-username> --password <your-token> ghcr.io 
+3. docker build has to follow a convention: 
+docker build  -t ghcr.io/levdops/worker:latest  -f ./Dockerfile.worker . 
+ docker build  -t ghcr.io/levdops/server:latest  -f ./Dockerfile.server . 
+
+docker push ghcr.io/levdops/worker:latest
+
+docker push ghcr.io/levdops/server:latest
