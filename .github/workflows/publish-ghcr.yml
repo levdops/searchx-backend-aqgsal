@@ -8,6 +8,22 @@ on:
 permissions: write-all
 
 jobs: 
+    test: 
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+            - name: Start MongoDB
+              uses: supercharge/mongodb-github-action@1.10.0
+              with:
+                mongodb-port: 27017
+                mongodb-db: searchx-test
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with: 
+                node-version: 12
+            - run: npm ci
+            - run: npm test
     build_and_publish:
         runs-on: ubuntu-latest
         steps:
@@ -19,12 +35,6 @@ jobs:
                 registry: ghcr.io
                 username: ${{ github.actor }}
                 password: ${{ secrets.GITHUB_TOKEN }}
-            - name: Start MongoDB
-              uses: supercharge/mongodb-github-action@1.10.0
-              with:
-                mongodb-port: 27017
-                mongodb-db: searchx-test
-            - run: npm run test
             - name: Build and publish
               run: |
                 echo "Building Docker Images"
