@@ -18,6 +18,11 @@ jobs:
                 registry: ghcr.io
                 username: ${{ github.actor }}
                 password: ${{ secrets.GITHUB_TOKEN }}
+            - name: Start MongoDB
+              uses: supercharge/mongodb-github-action@1.10.0
+              with:
+                mongodb-port: 27017
+            - run: npm run test
             - name: Build and publish
               run: |
                 echo "Building Docker Images"
