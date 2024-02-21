@@ -38,6 +38,8 @@ jobs:
                 node-version: 12
             - run: cp .env.example .env
             - run: npm ci
+            - run: ./node_modules/elasticdump/bin/elasticdump --input=test/data/test_index_mapping.json --output=http://localhost:9200/cranfield --type=mapping
+            - run: ./node_modules/elasticdump/bin/elasticdump --input=test/data/test_index.json --output=http://localhost:9200/cranfield --type=data
             - run: npm run start & npm test
     build_and_publish:
         runs-on: ubuntu-latest
