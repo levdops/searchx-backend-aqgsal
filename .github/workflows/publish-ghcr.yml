@@ -18,6 +18,14 @@ jobs:
               with:
                 mongodb-port: 27017
                 mongodb-db: searchx-test
+            - name: Runs Elasticsearch
+              uses: elastic/elastic-github-actions/elasticsearch@master
+              with:
+                stack-version: 7.7.1
+            - name: Start Redis
+              uses: supercharge/redis-github-action@1.7.0
+              with:
+                redis-port: 6379
             - name: Setup Node
               uses: actions/setup-node@v4
               with: 
