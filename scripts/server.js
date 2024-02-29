@@ -40,7 +40,7 @@ app.use(function(req, res, next) {
 });
 app.use('/v1', router);
 app.get('/', function(req, res) {
-    res.status(418).json({
+    res.status(200).json({
         error: false,
         message: 'The API is up and running.'
     });
