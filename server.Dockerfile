@@ -14,6 +14,6 @@ RUN npm install --frozen-lockfile
 
 COPY --chown=node:node . .
 
-EXPOSE 8080
+EXPOSE 80
 
 CMD [ "node", "scripts/server.js" ]
