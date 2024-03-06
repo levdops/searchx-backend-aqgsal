@@ -4,7 +4,7 @@ const search = require('../../../services/search');
 const scrap = require('../../../services/scrap');
 const config = require('../../../config/config');
 
-exports.search = function(req, res) {
+exports.search = function (req, res) {
     const userId = req.query.userId || '';
     const sessionId = req.query.sessionId || '';
 
@@ -22,7 +22,7 @@ exports.search = function(req, res) {
             }
             res.status(200).json(data);
         })
-        .catch(err => handleError(err));
+        .catch(err => handleError(err, res));
 };
 
 exports.getById = function (req, res) {
@@ -31,10 +31,10 @@ exports.getById = function (req, res) {
 
     search.getById(docId, providerName)
         .then(data => res.status(200).json(data))
-        .catch(err => handleError(err));
+        .catch(err => handleError(err, res));
 };
 
-function handleError(err) {
+function handleError(err, res) {
     console.log(err);
 
     if (err.name === 'Bad Request') {
