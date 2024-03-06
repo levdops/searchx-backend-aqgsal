@@ -70,7 +70,7 @@ jobs:
             with: 
               owner: levdops
               repo: searchx-iac
-              github_token: ${{secrets.GITHUB_TOKEN}}
+              github_token: ${{secrets.GH_PAT}}
               workflow_file_name: main.yml
               ref: main
               wait_interval: 10
